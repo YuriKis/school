@@ -1,22 +1,4 @@
 #include "iostream"
-
-//void arc(int*, int);
-void dig_trench(int *mt, int n){// 4
-  int i,j,x;
-  for(j=0;j<n;j++){
-    x = n-j-1;
-    for(int i = x; i<(n+x);i++){
-      *(mt+n*j+i-x)=((i<(n-1))?(n-i-1):(i-n+1));
-    }
-  }
-}
-
-void build_ziggurat(int *mt, int n){// 3
-  for(int x = 0; x < n/2; x++)
-    for(int i = x; i<n-x;i++)
-      for(int j= x; j<n-x;j++)
-        *(mt+n*i+j) = x+1;
-}
 void build_ziggurat(int *mt, int n){// 3
   for(int x = 0; x < n/2; x++)
     for(int i = x; i<n-x;i++)
@@ -34,4 +16,3 @@ int main(){
     printf("\n");
   }
 }
-
