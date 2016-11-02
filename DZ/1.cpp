@@ -7,7 +7,6 @@ void delete_duplicates(int arr[], int &n){ // Зодача 1
              for(int k=j;k<n;k++)
              {
                  arr[k]=arr[k+1];
-
              }
              n--;
          }

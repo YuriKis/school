@@ -1,6 +1,5 @@
 #include "iostream"
-
-//void arc(int*, int);
+#include <stdio.h>
 void dig_trench(int *mt, int n){// 4
   int i,j,x;
   for(j=0;j<n;j++){

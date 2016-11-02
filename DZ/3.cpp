@@ -1,4 +1,5 @@
 #include "iostream"
+#include <stdio.h>
 void build_ziggurat(int *mt, int n){// 3
   for(int x = 0; x < n/2; x++)
     for(int i = x; i<n-x;i++)
