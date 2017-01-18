@@ -1,20 +1,25 @@
 #include <iostream>
-#include <locale.h>
-
 using namespace std;
-
+void outer_points(int n, int m) {
+     int *beginning = new int[n];
+     int *ending = new int[n];
+     for (int i = 0; i < n; i++){
+         cin >> beginning[i] >> ending[i];
+     }
+     for (int i = 0; i < m; i++){
+         int dot, number = n;
+         cin >> dot;
+         for (int j = 0; j < n;j++){
+             if (beginning[j]<=dot && ending[j]>=dot){
+                number--;
+             }
+         }
+     cout << number << " ";
+     }
+}
 int main(){
-    setlocale(LC_ALL,"Rus");
-    int num, sum = 0, a, i = 1;
-    cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г·ГЁГ±Г«Г®: ";
-    cin >> num;
-    while(num != 0){
-        a = num % 10;
-        num = (num - a) / 10;
-        sum = sum + a;
-        }
-    cout << sum  << endl;
-
-    system("pause");
+    int n, m;
+    cin >> n >> m;
+    outer_points(n, m);
     return 0;
 }
