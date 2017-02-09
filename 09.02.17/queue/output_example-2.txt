@@ -1,0 +1,6 @@
+5
+3
+2
+7
+queue is empty, push element like:0
+11

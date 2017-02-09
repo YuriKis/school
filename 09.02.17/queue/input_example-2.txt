@@ -1,0 +1,13 @@
+queue 5
+push 3
+push 2
+pop
+push 7
+pop
+pop
+pop
+pop
+push 11
+push 12
+pop
+end
