@@ -1,0 +1,97 @@
+#define NULL 0
+#include <iostream>
+
+using namespace std;
+
+struct node
+{
+    int x;
+    node* l;
+    node* r;
+    int hight;
+    node ( int x ): x(x)
+    {
+        this-> l = NULL;
+        this-> r = NULL;
+        this-> hight = 1;
+    };
+};
+class AVL
+{
+private:
+    node* root;
+public:
+    unsigned char height(node* x){ return x?x->hight:0;                   }
+    int bfactor ( node* x ){       return height( x->r ) - height( x->l );}
+    void fixheight(node* p){
+        unsigned char hl = height(p->l);
+        unsigned char hr = height(p->r);
+        p->hight = (hl>hr?hl:hr)+1;
+    }
+    node* rotateright (node* x){
+        node* q = x->l;
+        x->l = q->r;
+        q->r = x;
+        fixheight(x);
+        fixheight(q);
+        return q;
+    }
+    node* rotateleft (node* x){
+        node* q = x->l;
+        x->r = q->l;
+        q->l = x;
+        fixheight(x);
+        fixheight(q);
+        return q;
+    }
+    node* add(node* p, int k){
+        if( !p ) return new node (k);
+        if( k<p->x )
+            p->l = add(p->l,k);
+        else
+            p->r = add(p->r,k);
+        return balance(p);
+    }
+    node* find1 (int k, node* a)
+    {
+        if ( k > a->x )
+            a->r?find1 ( k, a->r ): a = NULL;
+        if ( k < a->x )
+            a->l?find1 ( k, a->l ): a = NULL;
+        return a;
+    }
+    node* balance(node* p)
+    {
+        fixheight(p);
+        if( bfactor(p)==2 )
+        {
+            if( bfactor(p->r) < 0 )
+                p->r = rotateright(p->r);
+            return rotateleft(p);
+        }
+        if( bfactor(p)==-2 )
+        {
+            if( bfactor(p->l) > 0  )
+                p->l = rotateleft(p->l);
+            return rotateright(p);
+        }
+        return p;
+    }
+    void dell (node* a)
+    {
+        if (a->l)
+            dell ( a->l );
+        if (a->r)
+            dell (a->r);
+        delete a;
+    }
+    ~AVL (){
+        dell ( root );
+    }
+};
+int main()
+{
+    int x = 5;
+    AVL s(x);
+    return 0;
+}
